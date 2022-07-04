@@ -1,6 +1,6 @@
 # Ericsson Technical Task
 Project demonstrates client-side mirroring the server-side user-inputs via inter-container communication means.
-![]()
+![](https://github.com/instrido/Ericsson/raw/master/demo.gif)
 
 ## Overview
 
