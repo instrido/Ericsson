@@ -1,0 +1,40 @@
+version: "3.9"
+
+volumes:
+  message_broker_data:
+
+networks:
+  messagenet:  
+
+services:
+  message_broker:
+    image: 'rabbitmq:3-management-alpine'
+    ports:
+      - "15672:15672" # port to expose the rabbitmq management interface
+      - "5672:5672" # port to expose the rabbitmq broker interface
+    volumes:
+      - message_broker_data:/var/lib/rabbitmq
+    networks:
+      - messagenet
+  server:
+    build: ./Server
+    depends_on:
+      - message_broker
+    stdin_open: true
+    tty: true
+    environment:
+      - BROKER_HOST=message_broker
+      - BROKER_QUEUE=sync_queue
+    networks:
+      - messagenet
+  client:
+    build: ./Client
+    depends_on:
+      - message_broker
+    stdin_open: true
+    tty: true
+    environment:
+      - BROKER_HOST=message_broker
+      - BROKER_QUEUE=sync_queue
+    networks:
+      - messagenet
