@@ -21,7 +21,7 @@ This project assumes `Windows OS` as the target machine with `Docker` installed 
 - Switch to the server-side and type something. 
 - Observe that the client terminal mirrors user inputs on the server side.
 
-## Todo
+## Further Enhancements
 - Unit tests + Integration Tests.
 - Handle any/if edge cases.
 - Decouple message broker service from rabbitmq implementationd details.
